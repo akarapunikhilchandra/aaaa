@@ -18,7 +18,7 @@
   - when: output.rc != 0
     name: create roboshop user
     become: yes
-    ansible.biltin.user:
+    ansible.builtin.user:
       name: roboshop 
 
   - name: /app directory exists or not

@@ -42,6 +42,6 @@
       dest: /tmp
 
   - name: extract catalogue atrifact
-    ansible.builtin.unarchieve:
+    ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app

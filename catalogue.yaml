@@ -73,7 +73,7 @@
 
   - name: load catalogue data
     ansible.builtin.command: mongo --host mongodb.kpdigital.online < /app/schema/catalogue.js
-      remote_src: yes
+
   - name: start and enable catalogue
     ansible.builtin.service:
       name: catalogue

@@ -29,3 +29,9 @@
   - name: print the directory stats
     ansible.builtin.debug:
       msg: "output is: {{directory}}"
+
+  - name: crate a directory if directory doesn't exist
+    ansible.builtin.file:
+      path: /app
+      state: directory
+    when: directory.stat.exists == 'False'

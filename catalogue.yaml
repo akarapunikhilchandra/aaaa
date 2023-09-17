@@ -50,4 +50,34 @@
     ansible.builtin.command: npm install
     args:
       chdir: /app
-      
+
+  - name: copy catalogue service
+    ansible.builtin.copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service
+
+  - name: deamon reload
+    ansible.builtin.systemd:
+      daemon_reload: true
+      name: catalogue
+
+  - name: copy mongo repo to yum.repos.d
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: install mongodb shell
+    ansible.builtin.yum:
+      name: mongodb-org-shell
+      state: installed  
+
+  - name: check roboshop user exist or not
+    ansible.builtin.command: mongo --host mongodb.kpdigital.online </app/schema/catalogue.js
+
+  - name: start and enable catalogue
+    ansible.builtin.service:
+      name: catalogue
+      state: started
+      enabled: yes  
+
+  
